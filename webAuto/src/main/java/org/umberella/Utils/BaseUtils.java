@@ -53,7 +53,20 @@ public class BaseUtils {
 	public void cursorOverOnElement(WebElement element)
 	{
 		Actions actions = new Actions(driver);
-		actions.moveToElement(element);
-		actions.perform();
+		actions.moveToElement(element).perform();
+
 	}
+	
+	
+	public void cursorOverOnElementClick(WebElement element) throws InterruptedException
+	{
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).perform();
+		Thread.sleep(1000);
+		actions.click();
+		
+		
+	}
+	
+	
 }

@@ -1,5 +1,7 @@
 package org.umbrella.selenium.webAutoPage;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -32,12 +34,18 @@ public class AmazonPage extends BaseUtils {
 	@FindBy(id = "nav-shop")
 	public WebElement itemCateory;
 	
-	
-	
 	@FindBy(xpath = "//*[contains(text(), 'TV, Appliances, Electronics')]")
 	public WebElement electronicsItemSelector;
 	
-	public WebElement shippingContinueButton;
+	@FindBy(className = "nav-logo-link")
+	public WebElement amzonLogo;
+	
+	@FindBy(id = "twotabsearchtextbox")
+	public WebElement topSearchBar;
+	
+	@FindBy(xpath = "//*[@id=quantity]")
+	public WebElement quantityDropDown;
+	
 
 	public AmazonPage() {
 		aDriver = driver;
@@ -73,12 +81,50 @@ public class AmazonPage extends BaseUtils {
 		clickOnElement(loginButton);
 	}
 	
-	public void cursorOverOnCategory()
+	public void cursorOverOnCategory() throws InterruptedException
 	{
 		cursorOverOnElement(itemCateory);
-	//	cursorOverOnElement(electronicsItemSelector);
-	//	electronicsItemSelector.click();
+	}
+	
+	public void cursorOverOnSubCategory(String subCategory) throws InterruptedException
+	{
+		cursorOverOnElement(driver.findElement(By.xpath("//*[contains(text(), '"+subCategory+"')]")));
+	}
+	
+	public void clickOnSubCategory(String subCategory) throws InterruptedException
+	{
+		driver.findElement(By.xpath("//*[contains(text(), '"+subCategory+"')]")).click();
+	}
+	
+	public void headPhoneAddToCart()
+	{
+		driver.findElement(By.xpath("//*[contains(text(), 'Add to Cart')]")).click();
+	}
+	
+	public void clickAmazonLink()
+	{
+		clickOnElement(amzonLogo);
+	}
+	
+	public void searchInAmazon(String searchItem)
+	{
+		enterTextInTextBox(topSearchBar, searchItem);
+		topSearchBar.sendKeys(Keys.ENTER);
 		
+	}
+	
+	public void selectSecondAvailProduct() {
+	
+		aDriver.findElement(By.xpath("//div[contains(@class,'s-result-list s-search-results sg-row')]//span[contains(text(), 'MacBook Pro')]")).click();
+		
+
+	}
+	
+	public void selectProductQuntity(String quantity) {
+		
+		
+		driver.findElement(By.xpath("//*[contains(text(), 'Quantity:')]//following-sibling::select")).click();
+		aDriver.findElement(By.xpath("//*[contains(text(), '"+quantity+"')]")).click();
 	}
 	
 

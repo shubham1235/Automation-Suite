@@ -34,6 +34,7 @@ public class DriverInitialization {
 		ChromeOptions options = new ChromeOptions();
 
 		options.setExperimentalOption("prefs", prefs);
+		options.addArguments("start-maximized");
 
 		ChromeDriver driver = new ChromeDriver(options);
 
