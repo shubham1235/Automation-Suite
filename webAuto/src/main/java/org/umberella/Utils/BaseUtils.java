@@ -1,5 +1,7 @@
 package org.umberella.Utils;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +19,7 @@ public class BaseUtils {
 		driver = DriverInitialization.setDriverPath();
 		js = (JavascriptExecutor) driver;
 		actions = new Actions(driver);
+		driver.manage().timeouts().pageLoadTimeout(160, TimeUnit.SECONDS);
 	}
 
 	/**
@@ -25,6 +28,32 @@ public class BaseUtils {
 	 * Wait For Element
 	 */
 	public void WaitFor_visibilityOfElements(WebElement element) {
-		(new WebDriverWait(driver, 2)).until(ExpectedConditions.visibilityOf(element));
+		(new WebDriverWait(driver, 5)).until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	/**
+	 * Click on Element
+	 * @param element
+	 */
+	public void clickOnElement(WebElement element) {
+		element.click();
+	}
+	
+	
+	/**
+	 * 
+	 * @param element
+	 * @param text
+	 */
+	public void enterTextInTextBox(WebElement element, String text) {
+		element.sendKeys(text.trim());
+	}
+	
+	
+	public void cursorOverOnElement(WebElement element)
+	{
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element);
+		actions.perform();
 	}
 }
