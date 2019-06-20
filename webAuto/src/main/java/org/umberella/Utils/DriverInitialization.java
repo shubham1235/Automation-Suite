@@ -10,7 +10,11 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverInitialization {
 
-		
+/**
+ * 
+ * here we find out current operating system and set driver base on OS		
+ * @return
+ */
 	public static ChromeDriver setDriverPath() {
 
 		if (OSValidation.isMac()) {
