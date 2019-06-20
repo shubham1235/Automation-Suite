@@ -28,7 +28,7 @@ public class BaseUtils {
 	 * Wait For Element
 	 */
 	public void WaitFor_visibilityOfElements(WebElement element) {
-		(new WebDriverWait(driver, 5)).until(ExpectedConditions.visibilityOf(element));
+		(new WebDriverWait(driver, 15)).until(ExpectedConditions.visibilityOf(element));
 	}
 	
 	/**
@@ -49,7 +49,10 @@ public class BaseUtils {
 		element.sendKeys(text.trim());
 	}
 	
-	
+	/**
+	 * cursor Over On Element and perform
+	 * @param element
+	 */
 	public void cursorOverOnElement(WebElement element)
 	{
 		Actions actions = new Actions(driver);
@@ -57,7 +60,11 @@ public class BaseUtils {
 
 	}
 	
-	
+	/**
+	 * cursor Over On Element and Click
+	 * @param element
+	 * @throws InterruptedException
+	 */
 	public void cursorOverOnElementClick(WebElement element) throws InterruptedException
 	{
 		Actions actions = new Actions(driver);
