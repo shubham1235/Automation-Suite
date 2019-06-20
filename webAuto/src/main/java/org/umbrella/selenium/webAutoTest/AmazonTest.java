@@ -19,8 +19,7 @@ public class AmazonTest extends AmazonPage {
 	}
 	
 	@BeforeTest
-	public void preRequest()
-	{  
+	public void preRequest()	{  
 		aDriver.get("https://www.amazon.in/");
 		aDriver.manage().window().fullscreen();
 	}
@@ -28,6 +27,7 @@ public class AmazonTest extends AmazonPage {
 
 	@Test
 	public void validatePurchaseFlow() throws InterruptedException {
+		String oldTab = driver.getWindowHandle();	
 		clickForLogin();
 		softAssert.assertTrue(verifyLoginPage(),"After click on Account button no Navigation there for Login Page");
 		enterEmialAddress("shubverma5@gmail.com");
@@ -35,23 +35,18 @@ public class AmazonTest extends AmazonPage {
 		softAssert.assertTrue(verifyEnterEmialisExist(),"Enter email Address not valid");
 		enterPassword("Shubham1.");
 		clickOnLoginButton();
-		Thread.sleep(3000);
 		cursorOverOnCategory();
-		Thread.sleep(1000);
 		cursorOverOnSubCategory("TV, Appliances, Electronics");
-		Thread.sleep(1000);
 		clickOnSubCategory("Headphones");
-		Thread.sleep(2000);
 		headPhoneAddToCart();
-		Thread.sleep(2000);
 		clickAmazonLink();
 		searchInAmazon("Macbook pro"); 
 		Thread.sleep(2000);
-		selectSecondAvailProduct();
-		Thread.sleep(5000);
-		selectProductQuntity("2");
+		selectSecondAvailProduct("MacBook Pro");
+		selectProductQuntity("2");	
+		clickOnAddToCart();
+		clickOnCart();
+			
 	}
 	
-	
-
 }
